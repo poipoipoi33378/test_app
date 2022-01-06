@@ -7,7 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:test_app/main.dart';
 
 void main() {
@@ -26,5 +25,18 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+  });
+
+  testWidgets('MyWidget has a title and message', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+    // final titleFinder = find.text('Flutter Demo Home Page');
+
+    final messageFinder =
+        find.text('You have pushed the button this many times:');
+
+    // Use the `findsOneWidget` matcher provided by flutter_test to verify
+    // that the Text widgets appear exactly once in the widget tree.
+    expect(find.text('Flutter Demo Home Page'), findsOneWidget);
+    expect(messageFinder, findsOneWidget);
   });
 }
