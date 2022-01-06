@@ -34,29 +34,30 @@ void main() {
 
   setUp(() {
     // Create mock object.
-    cat = MockCat();
+    cat = MockCatRelaxed();
   });
 
   test("Let's verify some behaviour!", () {
     // Stub a method before interacting with it.
-    when(cat.sound()).thenReturn('Meow');
+    when(cat.sound()).thenReturn('Test');
 
     // Interact with the mock object.
     cat.sound();
+    expect(cat.sound(), 'Test');
 
     // Verify the interaction.
     verify(cat.sound());
   });
 
   test('How about some stubbing?', () {
-    // try {
-    //   cat.sound();
-    // } on MissingStubError {
-    //   // Unstubbed methods throw MissingStubError.
-    // }
+    try {
+      cat.sound();
+    } on MissingStubError {
+      // Unstubbed methods throw MissingStubError.
+    }
 
     // Unstubbed methods return null.
-    // expect(cat.sound(), null);
+    expect(cat.sound(), null);
 
     // Stub a method before interacting with it.
     when(cat.sound()).thenReturn('Purr');
